@@ -1,35 +1,31 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import BlogGenerator from "./Components/BlogGenerator";
+import CreateBlog from "./Components/CreateBlog";
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App(){
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+  const [array, setArray] = useState([
+    {title : "First Blog", subject : "Checking", body : "This is a body"},
+    {title : "First Blog", subject : "Checking", body : "This is a body"},
+    {title : "First Blog", subject : "Checking", body : "This is a body"},
+    {title : "First Blog", subject : "Checking", body : "This is a body"},
+    {title : "First Blog", subject : "Checking", body : "This is a body"},
+    {title : "First Blog", subject : "Checking", body : "This is a body"}
+  ]);
+
+  function handleClick(blog){
+    setArray(prevBlogs => [...prevBlogs, blog]);
+  }
+
+  return(
+    <div className="app--container">
+      <h2 className="app--title">BlogPosts</h2>
+      <br /><br />
+      <hr />
+      <div className="app--container--blogs">
+        <CreateBlog handleClick={handleClick} />
+        <BlogGenerator array = {array}/>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   )
 }
-
-export default App
