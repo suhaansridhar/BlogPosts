@@ -10,7 +10,6 @@ export default function App(){
   useEffect(() => {
     // get the JSON string from localStorage
     const str = localStorage.getItem('array');
-
     // convert JSON string to relevant object
     const parsedArray = JSON.parse(str);
     setArray(parsedArray);
@@ -24,20 +23,23 @@ export default function App(){
   function updateTheBlogs(){
     // convert array to JSON string using JSON.stringify()
     const jsonArray = JSON.stringify(array);
-
     // save to localStorage using "array" as the key and jsonArray as the value
     localStorage.setItem('array', jsonArray);
+  }
+
+  function handleDelete(id){
+    setArray(array.filter((element, index) => index !== id));
   }
 
   return(
     <div className="app--container">
       <h2 className="app--title">BlogPosts</h2>
-      <button onClick={updateTheBlogs}>UPDATE</button>
+      <button onClick={updateTheBlogs} className="update--button">UPDATE</button>
       <br /><br />
       <hr />
       <div className="app--container--blogs">
         <CreateBlog handleClick={handleClick} />
-        <BlogGenerator array = {array}/>
+        <BlogGenerator array = {array} handleDelete = {handleDelete}/>
       </div>
     </div>
   )

@@ -1,4 +1,4 @@
-function BlogGenerator({array}){
+function BlogGenerator({array, handleDelete}){
 
     return(
         <div className="blog--generator--container">
@@ -8,6 +8,7 @@ function BlogGenerator({array}){
                         <h3 className="blog--title">{element.title}</h3>
                         <h4 className="blog--subject">{element.subject}</h4>
                         <p className="blog--body">{element.body}</p>
+                        <button onClick={() => handleDelete(index)}>Delete Post</button>
                     </div>
                 )
             })}

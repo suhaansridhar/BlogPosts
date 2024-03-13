@@ -21,3 +21,17 @@
   display: flex;
   flex-direction: column;
 }
+
+.update--button{
+  background-color: green;
+  color: white;
+  border: 0.1rem solid white;
+  border-radius: 1rem;
+  padding: 1rem;
+  font-size: large;
+  cursor: pointer;
+}
+
+.update--button:hover{
+  box-shadow: red 5px 5px 5px;
+}
