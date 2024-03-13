@@ -9,10 +9,17 @@ export default function App(){
 
   useEffect(() => {
     // get the JSON string from localStorage
-    const str = localStorage.getItem('array');
-    // convert JSON string to relevant object
-    const parsedArray = JSON.parse(str);
-    setArray(parsedArray);
+    if(localStorage.getItem('array')){
+      const str = localStorage.getItem('array');
+      // convert JSON string to relevant object
+      const parsedArray = JSON.parse(str);
+      setArray(parsedArray);
+    }else{
+      // convert array to JSON string using JSON.stringify()
+      const jsonArray = JSON.stringify(array);
+      // save to localStorage using "array" as the key and jsonArray as the value
+      localStorage.setItem('array', jsonArray);
+    }
   }, []);
 
   function handleClick(blog){
